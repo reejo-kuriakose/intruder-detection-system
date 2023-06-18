@@ -12,7 +12,7 @@ class YOLOFace:
         detections = []
         for detection in box:
             x, y, w, h = detection
-            if h <= w*2.1:
+            if h <= w*2.1 and x+h>=135 and y+w>=95:
                 detections.append([y, x, y + w, x + h])
             # print(detections)
         return np.array(detections)
