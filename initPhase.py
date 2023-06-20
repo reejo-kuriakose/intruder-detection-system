@@ -9,6 +9,7 @@ import datetime
 import requests
 import os
 import stow
+from faceDetection import MPFaceDetection
 
 global facenet
 global engine
@@ -17,6 +18,7 @@ db = firestore.client()
 bucket = storage.bucket()
 yoloface = face_analysis()
 facenet = FaceNet(
+    # detector = MPFaceDetection(),
     detector=YOLOFace(face=yoloface),
     onnx_model_path="models/faceNet.onnx",
     anchors="faces/Known",
@@ -28,10 +30,12 @@ previous_entry = {'name': None, 'timestamp': None}
 entry_list = []
 lock = threading.Lock()
 
-
-def addNewFace():
+def captureFace():
     image = engine.return_frame()
     capture = facenet.detect_save_faces(image, output_dir="faces/Unknown")
+    return capture
+
+def addNewFace(capture: bool):
     # print(capture)
     # capture_list = list(capture)
     # while not capture:

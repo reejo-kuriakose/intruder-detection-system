@@ -6,6 +6,7 @@ import onnxruntime as ort
 import response as rsp
 import threading
 import initPhase
+import engine
 
 class FaceNet:
     """FaceNet class object, which can be used for simplified face recognition
@@ -219,7 +220,7 @@ class FaceNet:
         Returns:
             frame: (np.ndarray) - image with drawn face recognition results
         """
-        tokens = ["dqrhNGORS6KRlXVOW_aSRo:APA91bHCjSaFz74hdzUuCmt0lFSymoolzTFxnmkVgEPVAsXfRoX_lQguLeaItije8obDIEheNurBQh7QV8abZ0WmMS1p5W51RyoRHytUUtuwJKd2CUxzi4DSiJJTYDxcf2VEC5eGs9la"]
+        tokens = ["fzvy4MEVQjK5O-vCNDuKoO:APA91bH1wBibwOSNETEde4o0LUc9d1crOlr0QLP2pIIV3XLr6W4megproTXZugZlN2ov-AE-C010K-ccbirt-upwf9QaRsV8OkpYLjJ9cxYP-uYLKHVprfcsL4nXFYyipvUKUH6G97hB"]
         face_crops = {index: {"name": "Intruder", "tlbr": tlbr} for index, tlbr in enumerate(self.detector(frame, return_tlbr=True))}
         for key, value in face_crops.items():
             t, l, b, r = value["tlbr"]
@@ -245,7 +246,8 @@ class FaceNet:
                         notification_thread = threading.Thread(target=rsp.sendPush, args=("Intruder Detected", "Intruder Detected has been detected", tokens))
                         log_thread = threading.Thread(target=initPhase.sendLog, args=("Unknown",))
                         # print(unknown_distances)
-                        initPhase.addNewFace()
+                        capture = initPhase.captureFace()
+                        initPhase.addNewFace(capture)
                         notification_thread.start()
                         log_thread.start()
                         # rsp.send_notification = False
