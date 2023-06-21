@@ -51,7 +51,7 @@ def addNewFace(capture: bool):
 def uploadImage(index: str):
     lock.acquire()
     try:
-        blob = bucket.blob(f'Unknown_{index}.png')
+        blob = bucket.blob(f'Unknown_{blob = bucket.blob(f'{secrets.token_hex(16)}.png')
         with open(f'faces/Unknown/Unknown_{index}.png', 'rb') as f:
             blob.upload_from_file(f, content_type='image/png')
 
