@@ -11,6 +11,6 @@ The Intruder Detection System with Face Recognition is an intelligent system des
 - Image capture and storage: When an intruder is detected, the system captures an image of the intruder, which is then securely stored in Firebase. This allows users to review the captured images and add the face of the intruder to the known faces if desired.
 
 ## Acknowledgements
-- YOLOface: [Link to YOLOface python module](https://pypi.org/project/yoloface/)
-- FaceNet: [Link to FaceNet repository](https://github.com/davidsandberg/facenet)
-- Firebase: [Link to Firebase website](https://firebase.google.com)
+- YOLOface: https://pypi.org/project/yoloface
+- FaceNet: https://github.com/davidsandberg/facenet
+- Firebase: https://firebase.google.com
