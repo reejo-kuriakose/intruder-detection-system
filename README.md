@@ -13,4 +13,3 @@ The Intruder Detection System with Face Recognition is an intelligent system des
 ## Acknowledgements
 - YOLOface: https://pypi.org/project/yoloface
 - FaceNet: https://github.com/davidsandberg/facenet
-- Firebase: https://firebase.google.com
